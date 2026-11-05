@@ -1,5 +1,7 @@
 # AI Quality Suite
 
+[![Offline quality checks](https://github.com/TanmayaMathur/AI-Quality-Suite/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/TanmayaMathur/AI-Quality-Suite/actions/workflows/ci.yml?query=branch%3Amain)
+
 **Enterprise-Grade LLM Evaluation & Guardrail Testing Framework**
 
 AI Quality Suite is a local-first RAG quality lab for a fictional smart-home company, Lumenvale Home Systems. It makes changes to retrieval, prompts, and models measurable through a fixed corpus, paired evaluator outputs, adversarial probes, repeated trials, and an explicit release decision. Each result can be traced back to a case, response, metric version, and run configuration.
@@ -148,7 +150,7 @@ Regenerate reports from a saved run with `.\scripts\report.ps1 -RunId '<run-id>'
 
 Push and pull requests run lint, dataset validation, and offline tests on Windows and Linux. The full gate uses a trusted Linux self-hosted runner labeled `aqs-local` with Qdrant and Ollama on loopback. Restrict the `aqs-local-evaluation` environment to the default branch and trusted reviewers. Use a dedicated runner. Dispatch with `bootstrap` to produce a candidate on that runner for review. The normal gate returns a failing job for any FAIL, INCONCLUSIVE, or ERROR. A default-branch release workflow can call `./.github/workflows/evaluation.yml` and make deployment depend on the result.
 
-Before publishing, review `git status --short --ignored`, stage the source, and inspect the staged diff. Create an empty GitHub repository, add its real remote, commit, and push. Enable branch protection and add the workflow badge after a real run. To demonstrate red and green, use a temporary branch such as `codex/ci-demo`, commit an intentionally failing test assertion, push and observe the failed PR check, then revert that commit and observe the passing check before closing the PR.
+Before publishing a fork, review `git status --short --ignored`, stage the source, and inspect the staged diff. Enable branch protection and update the workflow badge to point to the fork. To demonstrate red and green, use a temporary branch such as `codex/ci-demo`, commit an intentionally failing test assertion, push and observe the failed PR check, then revert that commit and observe the passing check before closing the PR.
 
 ## Limits and next steps
 
