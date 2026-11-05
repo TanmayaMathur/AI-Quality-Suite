@@ -1,0 +1,15 @@
+.git
+.env
+.venv
+.python
+.uv-cache
+.npm-cache
+node_modules
+state
+reports
+**/__pycache__
+.pytest_cache
+.ruff_cache
+.coverage*
+coverage.xml
+junit.xml

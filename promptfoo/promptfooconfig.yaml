@@ -1,0 +1,17 @@
+description: Lumenvale baseline versus grounded RAG prompt on shared golden cases
+prompts:
+  - id: baseline-v1
+    raw: baseline-v1
+    label: baseline-v1
+  - id: grounded-v1
+    raw: grounded-v1
+    label: grounded-v1
+providers:
+  - id: file://provider.cjs
+tests: file://../reports/promptfoo-cases.json
+defaultTest:
+  assert:
+    - type: javascript
+      value: file://behavior.cjs
+    - type: javascript
+      value: file://groundedness.cjs

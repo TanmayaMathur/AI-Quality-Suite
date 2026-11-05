@@ -1,0 +1,10 @@
+{
+  "name": "ai-quality-suite-promptfoo",
+  "version": "0.1.0",
+  "private": true,
+  "engines": { "node": ">=22.22.0" },
+  "scripts": {
+    "evaluate": "promptfoo eval --config promptfoo/promptfooconfig.yaml --no-cache --max-concurrency 1 --output reports/promptfoo.json"
+  },
+  "devDependencies": { "promptfoo": "0.125.1" }
+}

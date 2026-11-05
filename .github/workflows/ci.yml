@@ -1,0 +1,47 @@
+name: Offline quality checks
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: offline-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  offline:
+    name: Offline Python 3.11 (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    env:
+      PYTEST_DISABLE_PLUGIN_AUTOLOAD: "1"
+      DEEPEVAL_TELEMETRY_OPT_OUT: "YES"
+      RAGAS_DO_NOT_TRACK: "true"
+      LANGSMITH_TRACING: "false"
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@07a047e608db84b3d8c06cd9a7c7dcc9c355c18e # v10.3.2
+        with:
+          version: "0.11.4"
+      - run: uv sync --locked
+      - run: uv run --no-sync ruff check .
+      - run: uv run --no-sync ruff format --check .
+      - run: uv run --no-sync python -m evaluation.datasets
+      - run: uv run --no-sync python -m pytest -p pytest_cov --cov --cov-report=xml --cov-report=term-missing --junitxml=junit.xml
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: offline-${{ matrix.os }}
+          path: |
+            junit.xml
+            coverage.xml
+            reports/dataset-validation.json
+          retention-days: 14

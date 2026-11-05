@@ -1,0 +1,28 @@
+{
+  "dataset_version": "golden-v1",
+  "document_version": "lumenvale-handbook-v1",
+  "golden_count": 66,
+  "adversarial_count": 35,
+  "document_count": 12,
+  "safety_fixture_count": 20,
+  "golden_categories": {
+    "ambiguous": 3,
+    "comparison": 8,
+    "context-dependent": 12,
+    "factual": 10,
+    "multi-hop": 5,
+    "numerical": 11,
+    "source-attribution": 12,
+    "unanswerable": 5
+  },
+  "adversarial_categories": {
+    "conflicting-instructions": 5,
+    "direct-injection": 5,
+    "false-refusal": 5,
+    "indirect-injection": 5,
+    "rule-bypass": 5,
+    "synthetic-leakage": 5,
+    "untrusted-source": 5
+  },
+  "creation_method": "AI-authored synthetic handbook and cases with automated schema and exact evidence-span checks. No independent human review recorded."
+}

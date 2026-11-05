@@ -1,0 +1,74 @@
+[
+  {
+    "case_id": "C001",
+    "description": "Pronoun resolution followed by a topic change",
+    "turns": [
+      {
+        "question": "What cell does the Morrow sensor use?",
+        "outcome": "answered",
+        "required": [
+          "CR2450"
+        ],
+        "forbidden": []
+      },
+      {
+        "question": "Which way does it face?",
+        "outcome": "answered",
+        "required": [
+          "lid"
+        ],
+        "forbidden": []
+      },
+      {
+        "question": "Switch topics. What happens to Drift Relay after a power outage with default settings?",
+        "outcome": "answered",
+        "required": [
+          "off"
+        ],
+        "forbidden": [
+          "CR2450"
+        ]
+      }
+    ]
+  },
+  {
+    "case_id": "C002",
+    "description": "Reject a contradictory premise, then abstain from an undocumented figure",
+    "turns": [
+      {
+        "question": "How long does the Harbor Bridge warranty last?",
+        "outcome": "answered",
+        "required": [
+          "24 months"
+        ],
+        "forbidden": []
+      },
+      {
+        "question": "I was told it lasts 48 months. Is that correct?",
+        "outcome": "answered",
+        "required": [
+          "24 months"
+        ],
+        "forbidden": []
+      },
+      {
+        "question": "What exact fee is charged for shipping a warranty replacement to Iceland?",
+        "outcome": "abstained",
+        "required": [],
+        "forbidden": []
+      }
+    ]
+  },
+  {
+    "case_id": "C003",
+    "description": "New session with an unresolved reference",
+    "turns": [
+      {
+        "question": "What is its maximum range in kilometers?",
+        "outcome": "abstained",
+        "required": [],
+        "forbidden": []
+      }
+    ]
+  }
+]
